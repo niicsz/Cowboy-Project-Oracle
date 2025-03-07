@@ -1,0 +1,38 @@
+public class ContaPoupanca extends Conta {
+    private double taxaJuros = 0.05;
+    
+    public ContaPoupanca(int numero, String titular) {
+        super(numero, titular);
+    }
+
+    public double getTaxaJuros() {
+        return taxaJuros;
+    }
+
+    public void setTaxaJuros(double taxaJuros) {
+        this.taxaJuros = taxaJuros;
+    }
+
+    public void aplicarJuros() {
+        double juros = this.saldo * this.taxaJuros;
+        this.depositar(juros);
+        System.out.println("Juros aplicados: R$ " + juros);
+    }
+
+    @Override
+    public boolean sacar(double valor) {
+        if (valor > 0 && this.saldo >= valor) {
+            this.saldo -= valor;
+            System.out.println("Saque de R$ " + valor + " realizado com sucesso!");
+            return true;
+        }
+        System.out.println("Saldo insuficiente para saque!");
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Conta Poupança [número=" + numero + ", titular=" + titular + 
+               ", saldo=" + saldo + ", taxa de juros=" + (taxaJuros * 100) + "%]";
+    }
+}
