@@ -1,19 +1,48 @@
-        iPhone meuIphone = new iPhone();
+return "Conta Poupança [número=" + numero + ", titular=" + titular + 
+               ", saldo=" + saldo + ", taxa de juros=" + (taxaJuros * 100) + "%]";
+    }
+}
 
-        // Teste do Reprodutor Musical
-        System.out.println("Testando Reprodutor Musical...");
-        meuIphone.tocar();
-        meuIphone.selecionarMusica("Bohemian Rhapsody - Queen");
-        meuIphone.pausar();
 
-        // Teste do Aparelho Telefônico
-        System.out.println("\nTestando Aparelho Telefônico...");
-        meuIphone.ligar("+55 21 98765-4321");
-        meuIphone.atender();
-        meuIphone.iniciarCorreioVoz();
 
-        // Teste do Navegador na Internet
-        System.out.println("\nTestando Navegador na Internet...");
-        meuIphone.exibirPagina("https://www.google.com");
-        meuIphone.adicionarNovaAba();
-        meuIphone.atualizarPagina();
+
+
+
+public class SistemaBancario {
+    public static void main(String[] args) {
+        ContaCorrente cc = new ContaCorrente(1001, "João Silva", 500);
+        ContaPoupanca cp = new ContaPoupanca(2001, "Maria Santos");
+        
+        cc.depositar(1000);
+        cp.depositar(800);
+        
+        System.out.println("\nInformações das contas após depósitos:");
+        System.out.println(cc);
+        System.out.println(cp);
+        
+        cc.sacar(300);
+        cp.sacar(200);
+        
+        System.out.println("\nInformações das contas após saques:");
+        System.out.println(cc);
+        System.out.println(cp);
+        
+        cc.transferir(100, cp);
+        
+        System.out.println("\nInformações das contas após transferência:");
+        System.out.println(cc);
+        System.out.println(cp);
+        
+        cp.aplicarJuros();
+        
+        System.out.println("\nInformações da conta poupança após aplicação de juros:");
+        System.out.println(cp);
+        
+        System.out.println("\nDemonstrando polimorfismo:");
+        Conta conta = cc; 
+        System.out.println("Saldo da conta (CC): " + conta.getSaldo());
+        
+        conta = cp;
+        System.out.println("Saldo da conta (CP): " + conta.getSaldo());
+    }
+}
